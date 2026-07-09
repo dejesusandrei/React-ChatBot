@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise 2</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      function ProductDetails({name, price, discountPrice}) {
+        return (
+          <div>
+            <p>{name}</p>
+
+            {discountPrice ? (
+              <>
+                <del>Price: ${price}</del> <p>Discount Price: ${discountPrice}</p>
+              </>
+            ) : <p>Price: ${price}</p>}
+
+            <div>
+              <button>Add to Cart</button>
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <ProductDetails name="Cotton socks" price="10.90" discountPrice="5.90"/>
+            <ProductDetails name="Tennis  balls" price="6.00" discountPrice="3.00"/>
+            <ProductDetails name="Plain T-Shirt" price="7.99" />
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
