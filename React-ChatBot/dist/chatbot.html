@@ -117,7 +117,7 @@
               reply: 'You can absolutely do it! Anyone can learn how to code with time and practice.'
             },
             {
-              keywords: ['than you', 'salamat'],
+              keywords: ['thank you', 'salamat'],
               reply: 'No problem! Let me know if you need help with anything else!'
             }
           ];
@@ -175,7 +175,15 @@
 
           React.useEffect(() =>{
             const containerElement = chatMessageRef.current;
-            if(containerElement) containerElement.scrollTop = containerElement.scrollHeight;
+            if(containerElement) {
+              // smooth transition of scrolling
+              requestAnimationFrame(() =>{
+                containerElement.scrollTo({
+                  top: containerElement.scrollHeight,
+                  behavior: 'smooth'
+                });
+              });
+            };
           }, [chatMessages]);
 
           return(
@@ -188,30 +196,30 @@
 
         function App(){
           // Lifting state up: sharing state between components
-          const [chatMessages, setChatMessages] = React.useState([
-            {
-              id: "1",
-              message: "Hello chatdong",
-              sender: "user"
-            },
-            {
-              id: "2",
-              message: "Hello! How can I help you?",
-              sender: "chatdong"
-            },
-            {
-              id: "3",
-              message: "Can you get me today's date?",
-              sender: "user"
-            },
-            {
-              id: "4",
-              message: "Today is July 4, 2026",
-              sender: "chatdong"
-            }
-          ]);
+          // const [chatMessages, setChatMessages] = React.useState([
+          //   {
+          //     id: "1",
+          //     message: "Hello chatdong",
+          //     sender: "user"
+          //   },
+          //   {
+          //     id: "2",
+          //     message: "Hello! How can I help you?",
+          //     sender: "chatdong"
+          //   },
+          //   {
+          //     id: "3",
+          //     message: "Can you get me today's date?",
+          //     sender: "user"
+          //   },
+          //   {
+          //     id: "4",
+          //     message: "Today is July 4, 2026",
+          //     sender: "chatdong"
+          //   }
+          // ]);
           
-          // const [chatMessages, setChatMessages] = React.useState([]);
+          const [chatMessages, setChatMessages] = React.useState([]);
 
           return(
             // App container
