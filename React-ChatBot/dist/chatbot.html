@@ -163,29 +163,28 @@
           
 				}
 
+				// Custom Hook
+				function useAutoScroll(dependencies){
+					const containerRef = React.useRef(null);
+
+					React.useEffect(() =>{
+						const containerElement = containerRef.current;
+						if(containerElement) {
+							// smooth transition of scrolling
+							requestAnimationFrame(() =>{
+								containerElement.scrollTo({
+									top: containerElement.scrollHeight,
+									behavior: 'smooth'
+								});
+							});
+						};
+					}, dependencies);
+
+					return containerRef;
+				}
+
         function ChatMessages({chatMessages}){
-          
-          // // current value of the state variable
-          // const chatMessages = array[0];
-          // // function to update the state variable
-          // const setChatMessages = array[1];
-          // or shorthand
-          // const [chatMessages, setChatMessages] = array;
-
-          const chatMessageRef = React.useRef(null);
-
-          React.useEffect(() =>{
-            const containerElement = chatMessageRef.current;
-            if(containerElement) {
-              // smooth transition of scrolling
-              requestAnimationFrame(() =>{
-                containerElement.scrollTo({
-                  top: containerElement.scrollHeight,
-                  behavior: 'smooth'
-                });
-              });
-            };
-          }, [chatMessages]);
+					const chatMessageRef = useAutoScroll([chatMessages]);
 
           return(
             // Chat Messages Container
