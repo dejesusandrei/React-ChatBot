@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>exercise 1</title>
+    <title>exercise 6</title>
   </head>
   <body>
     <div id="root"></div>
@@ -13,14 +13,18 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
     <script type="text/babel">
-      function LoginForm() {
-        return (
+
+      function LoginForm(){
+				const [showPassword, setShowPassword]  = React.useState(true);
+
+        return(
           <>
             <div>
               <input type="email" placeholder="Enter your email" />
             </div>
             <div>
-              <input type="password" placeholder="Enter your password" />
+              <input type={showPassword ? 'text' : 'password'} placeholder="Enter your password" />
+							<button onClick={() => setShowPassword(prev => !prev)}>{showPassword ? 'Hide' : 'Show'}</button>
             </div>
             <div>
               <button>Login</button>
@@ -30,8 +34,8 @@
         );
       }
 
-      function App() {
-        return (
+      function App(){
+        return(
           <>
             <p>Hello, welcome to my website</p>
             <LoginForm />
