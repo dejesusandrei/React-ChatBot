@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body class="min-h-full bg-slate-50 my-0 font-sans">
-      <div  id="js-container">
+      <div id="js-container">
 
       </div>
 
@@ -71,19 +71,21 @@
 
             // if you want a delay reply for chat bot
 
-            const newUserChatMessage = {id: crypto.randomUUID(), message: inputText, sender: 'user'};
+            const newUserChatMessage = {id: crypto.randomUUID(), message: inputText.trim(), sender: 'user'};
 
             const loadingId = crypto.randomUUID();
-            const loadingMessage = {id: loadingId, message: 'Loading...', sender: 'chatdong'};
+            const loadingMessage = {id: loadingId, message: <img className='h-10' src='../icon/loading-spinner.gif' alt='Loading...' />, sender: 'chatdong'};
             setChatMessages(prev => [...prev, newUserChatMessage, loadingMessage]);
-            const finalBotReply = generateChatDongResponse(inputText);
-
-            // To Clear the text input
             setInputText('');
-            
-            setTimeout(() =>{
-              setChatMessages(prev => prev.map(msg => msg.id === loadingId ? {...msg, message: finalBotReply} : msg));
-            }, 1000);
+
+            try{
+              const finalBotReply = await generateChatDongResponse(inputText);
+              setTimeout(() =>{
+                setChatMessages(prev => prev.map(msg => msg.id === loadingId ? {...msg, message: finalBotReply} : msg));
+              }, 500);
+            } catch(error){
+              setChatMessages(prev => prev.map(msg => msg.id === loadingId ? {...msg, message: 'Sorry, something went wrong. Please try again.'} : msg));
+            }
           }
 
 					return(
@@ -172,7 +174,6 @@
 
           const chatMessageRef = React.useRef(null);
 
-
           React.useEffect(() =>{
             const containerElement = chatMessageRef.current;
             if(containerElement) {
@@ -188,8 +189,10 @@
 
           return(
             // Chat Messages Container
-            <div className="grow overflow-scroll scrollbar-none mt-5" ref={chatMessageRef}>
-              {chatMessages.map(({id, message, sender}) => <ChatMessage key={id} message={message} sender={sender} />)}
+            <div className="grow overflow-scroll scrollbar-none mt-10" ref={chatMessageRef}>
+              {chatMessages.length === 0 ? <p className='text-gray-500 text-lg grow mt-5 text-center'>Welcome to the chatbot project! Send a message using the textbox below</p> : (
+                chatMessages.map(({id, message, sender}) => <ChatMessage key={id} message={message} sender={sender} />)
+              )}
             </div>
           );
         }
@@ -223,7 +226,7 @@
 
           return(
             // App container
-            <div className="h-screen max-w-2xl mx-auto flex flex-col">
+            <div className="h-screen max-w-2xl mx-auto flex flex-col px-4 sm:px-6 lg:px-8">
               <ChatMessages chatMessages={chatMessages} />
               <ChatInput chatMessages={chatMessages} setChatMessages={setChatMessages} /> 
             </div>
