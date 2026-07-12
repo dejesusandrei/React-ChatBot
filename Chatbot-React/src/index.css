@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+.markdown-content p {
+  margin: 0 0 8px 0; /* Nagbibigay ng sapat na puwang pababa sa bawat dulo ng talata */
+  line-height: 1.5;
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0; /* Tinatanggal ang gap sa pinakahuling linya */
+}
+
+/* Inaayos ang padding at margin para sa mga bullet list points */
+.markdown-content ul, .markdown-content ol {
+  margin-top: 4px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.markdown-content li {
+  margin-bottom: 4px;
+}
+
+/* Inaayos ang itsura ng mga bold headers (tulad ng Lokasyon sa Mundo) */
+.markdown-content h1, 
+.markdown-content h2, 
+.markdown-content h3, 
+.markdown-content h4 {
+  font-weight: 700;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.markdown-content strong {
+  font-weight: 700;
+}
