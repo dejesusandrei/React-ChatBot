@@ -1,16 +1,22 @@
-# React + Vite
+# ChatDong AI Assistant 🤖
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ChatDong is a modern, responsive web-based chatbot application built using React and powered by the latest Google Gemini AI API. It features real-time streaming-like responses, automated auto-scrolling UI, and robust Markdown styling parsing.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Frontend Framework:** React (Vite)
+- **Styling:** Tailwind CSS
+- **AI Integration:** `@google/genai` (Google GenAI SDK)
+- **Markdown Parsing:** `react-markdown`
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Features
 
-## Expanding the ESLint configuration
+- **Gemini 3.5 Flash Integration:** Out-of-the-box support for Google's lightning-fast flagship model.
+- **Custom Keywords Overrides:** Fast-intercept mapping for specific queries (e.g., custom branding responses when asking for the chatbot's name).
+- **Rich Text / Markdown Support:** Automatically renders headings, list bullet points, and bold text layouts cleanly.
+- **Auto-Scrolling Chat Container:** Keeps track of active messaging streams and scrolls smoothly into view dynamically.
+- **Environment Isolation:** Keeps credentials safe via decoupled environment configurations.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
