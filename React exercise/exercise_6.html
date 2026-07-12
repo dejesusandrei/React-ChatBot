@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise 1</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+
+    <script type="text/babel">
+      function LoginForm() {
+        return (
+          <>
+            <div>
+              <input type="email" placeholder="Enter your email" />
+            </div>
+            <div>
+              <input type="password" placeholder="Enter your password" />
+            </div>
+            <div>
+              <button>Login</button>
+              <button>Sign up</button>
+            </div>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <p>Hello, welcome to my website</p>
+            <LoginForm />
+          </>
+        );
+      }
+
+      const container = document.getElementById("root");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
