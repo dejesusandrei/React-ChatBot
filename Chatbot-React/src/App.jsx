@@ -91,8 +91,6 @@ async function generateChatDongResponse(userText){
     console.error("Gemini API Error details:", error);
     throw new Error("Sorry, something went wrong with ChatDong.");
   }
-
-  return matchedResponse ? matchedResponse.reply : 'I apologize, but I am unable to process that request. Please try asking differently.';
 }
 
 function ChatMessage({message, sender}){
@@ -128,7 +126,6 @@ function useAutoScroll(dependencies){
 
 function ChatMessages({chatMessages}){
   const chatMessageRef = useAutoScroll(chatMessages);
-
   return(
     // Chat Messages Container
     <div className="grow overflow-scroll scrollbar-none mt-10" ref={chatMessageRef}>
