@@ -1,8 +1,11 @@
-export async function GenerateResponse(userText){
+// src/GenerateResponse.jsx
+
+export async function GenerateResponse(userText) {
   if (!userText || !userText.trim()) return "";
   const text = userText.toLowerCase().trim();
 
-  const response = [
+  // 1. Keyword Responses (Mananatili sa Frontend para mabilis)
+  const personalResponse = [
     {
       keywords: ['ano name mo', "what's your name?", "what's your name", 'ano pangalan mo', 'sino ka', 'who are you', 'what is your name'],
       reply: 'My name is ChatDong, your friendly chatbot assistant.'
@@ -73,23 +76,30 @@ export async function GenerateResponse(userText){
     }
   ];
 
-  const matchedResponse = response.find(({keywords}) => 
+  const matchedResponse = personalResponse.find(({ keywords }) =>
     keywords.some(keyword => text.includes(keyword))
   );
 
   if (matchedResponse) return matchedResponse.reply;
-  
+
+  // 2. AI Response (Tatawag sa iyong Vercel Backend)
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: text }),
+      body: JSON.stringify({ message: text }), // Ipinapasa ang text sa backend
     });
 
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Server Error");
+    }
+
     const data = await response.json();
-    return data.reply;
+    return data.reply; // Ito ang sagot galing sa Gemini 1.5 Flash
+
   } catch (error) {
-    console.error("Error:", error);
-    return "Sorry, something went wrong with ChatDong.";
+    console.error("ChatDong API Error:", error);
+    return "Pasensya na, may error sa brain ko. Subukan mo ulit mamaya!";
   }
 }
