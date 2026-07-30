@@ -7,7 +7,7 @@ ChatDong is a modern, responsive web-based chatbot application built using React
 > ### 🌐 Try ChatDong Live!
 > The application is deployed and hosted on Vercel. 
 > 
-> 👉 **[Click here to open the Live Demo](https://simpledevrei-chatbot.vercel.app/)**
+> 👉 **[Click here to open the Live Demo](https://simpledevrei-ai-chatbot.vercel.app/)**
 
 ---
 ## 🚀 Tech Stack
